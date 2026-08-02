@@ -1,0 +1,131 @@
+/* ==========================================
+   BENTO GRID
+========================================== */
+
+.bento-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    gap:24px;
+}
+
+/* ==========================================
+   CARD
+========================================== */
+
+.bento-card{
+    position:relative;
+    min-height:320px;
+    overflow:hidden;
+    border-radius:var(--radius-lg);
+    box-shadow:var(--shadow-md);
+}
+
+.bento-card.large{
+    grid-row:span 2;
+    min-height:664px;
+}
+
+.bento-card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.6s ease;
+}
+
+/* ==========================================
+   OVERLAY
+========================================== */
+
+.bento-overlay{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    padding:32px;
+    background:linear-gradient(
+        to top,
+        rgba(0,0,0,.80),
+        rgba(0,0,0,.15),
+        transparent
+    );
+}
+
+.bento-overlay span{
+    display:inline-block;
+    margin-bottom:12px;
+    color:var(--secondary);
+    font-size:14px;
+    font-weight:var(--fw-semibold);
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.bento-overlay h3{
+    color:var(--text-white);
+    font-size:30px;
+    line-height:1.3;
+}
+
+/* ==========================================
+   HOVER
+========================================== */
+
+.bento-card:hover img{
+    transform:scale(1.08);
+}
+
+.bento-card:hover{
+    transform:translateY(-6px);
+    transition:var(--transition);
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media(max-width:991px){
+
+    .bento-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .bento-card.large{
+        grid-row:auto;
+        grid-column:span 2;
+        min-height:500px;
+    }
+
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media(max-width:768px){
+
+    .bento-grid{
+        grid-template-columns:1fr;
+    }
+
+    .bento-card.large{
+        grid-column:auto;
+    }
+
+    .bento-card{
+        min-height:300px;
+    }
+
+    .bento-card.large{
+        min-height:400px;
+    }
+
+    .bento-overlay{
+        padding:24px;
+    }
+
+    .bento-overlay h3{
+        font-size:24px;
+    }
+
+}

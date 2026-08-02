@@ -1,0 +1,227 @@
+/* ==========================================
+   FOOTER
+========================================== */
+
+.footer{
+
+    background:var(--bg-dark);
+
+    color:var(--text-white);
+
+    padding-top:100px;
+
+}
+
+/* ==========================================
+   GRID
+========================================== */
+
+.footer-content{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr 1fr 1fr;
+
+    gap:60px;
+
+    padding-bottom:60px;
+
+}
+
+/* ==========================================
+   BRAND
+========================================== */
+
+.footer-brand img{
+
+    width:80px;
+
+    margin-bottom:24px;
+
+}
+
+.footer-brand h3{
+
+    color:var(--text-white);
+
+    margin-bottom:20px;
+
+}
+
+.footer-brand p{
+
+    color:rgba(255,255,255,.70);
+
+}
+
+/* ==========================================
+   HEADINGS
+========================================== */
+
+.footer h4{
+
+    color:var(--text-white);
+
+    margin-bottom:24px;
+
+}
+
+/* ==========================================
+   LINKS
+========================================== */
+
+.footer-links ul,
+
+.footer-contact ul{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:16px;
+
+}
+
+.footer-links a{
+
+    color:rgba(255,255,255,.70);
+
+    transition:var(--transition);
+
+}
+
+.footer-links a:hover{
+
+    color:var(--secondary);
+
+    padding-left:8px;
+
+}
+
+/* ==========================================
+   CONTACT
+========================================== */
+
+.footer-contact li{
+
+    display:flex;
+
+    gap:14px;
+
+    color:rgba(255,255,255,.70);
+
+    line-height:1.8;
+
+}
+
+.footer-contact i{
+
+    color:var(--secondary);
+
+    margin-top:5px;
+
+}
+
+/* ==========================================
+   SOCIALS
+========================================== */
+
+.social-links{
+
+    display:flex;
+
+    gap:16px;
+
+}
+
+.social-links a{
+
+    width:48px;
+
+    height:48px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:50%;
+
+    color:#fff;
+
+    transition:var(--transition);
+
+}
+
+.social-links a:hover{
+
+    background:var(--secondary);
+
+    border-color:var(--secondary);
+
+    transform:translateY(-4px);
+
+}
+
+/* ==========================================
+   FOOTER BOTTOM
+========================================== */
+
+.footer-bottom{
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    padding:30px 0;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+.footer-bottom p{
+
+    color:rgba(255,255,255,.60);
+
+    font-size:15px;
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:991px){
+
+    .footer-content{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .footer-content{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .footer-bottom{
+
+        flex-direction:column;
+
+        text-align:center;
+
+    }
+
+}

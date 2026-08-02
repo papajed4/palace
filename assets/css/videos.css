@@ -1,0 +1,145 @@
+/* ==========================================
+   VIDEOS SECTION
+========================================== */
+
+.videos{
+    background:var(--bg-white);
+}
+
+/* ==========================================
+   GRID
+========================================== */
+
+.videos-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:32px;
+}
+
+/* ==========================================
+   CARD
+========================================== */
+
+.video-card{
+    background:var(--bg-white);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+    box-shadow:var(--shadow-md);
+    transition:var(--transition);
+}
+
+.video-card:hover{
+    transform:translateY(-8px);
+}
+
+/* ==========================================
+   THUMBNAIL
+========================================== */
+
+.video-thumbnail{
+    position:relative;
+    height:280px;
+    overflow:hidden;
+}
+
+.video-thumbnail img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.6s ease;
+}
+
+.video-card:hover .video-thumbnail img{
+    transform:scale(1.08);
+}
+
+/* ==========================================
+   PLAY BUTTON
+========================================== */
+
+.video-play{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:72px;
+    height:72px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(255,255,255,.18);
+    backdrop-filter:blur(12px);
+    color:var(--text-white);
+    font-size:24px;
+    transition:var(--transition);
+}
+
+.video-card:hover .video-play{
+    background:var(--secondary);
+}
+
+/* ==========================================
+   CONTENT
+========================================== */
+
+.video-content{
+    padding:28px;
+}
+
+.video-date{
+    display:block;
+    margin-bottom:12px;
+    color:var(--secondary);
+    font-size:14px;
+    font-weight:var(--fw-semibold);
+}
+
+.video-content h3{
+    margin-bottom:20px;
+    font-size:26px;
+    color:var(--text-dark);
+    line-height:1.4;
+}
+
+/* ==========================================
+   LINK
+========================================== */
+
+.video-link{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-weight:var(--fw-semibold);
+    color:var(--primary);
+    transition:var(--transition);
+}
+
+.video-link:hover{
+    gap:16px;
+    color:var(--secondary);
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:991px){
+
+    .videos-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:768px){
+
+    .videos-grid{
+        grid-template-columns:1fr;
+    }
+
+    .video-thumbnail{
+        height:240px;
+    }
+
+}

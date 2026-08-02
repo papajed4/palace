@@ -1,0 +1,218 @@
+/* ==========================================
+   NAVIGATION CSS
+   Royal Palace Website
+   Version: 1.0
+========================================== */
+
+/* ==========================================
+   NAVBAR
+========================================== */
+
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:var(--navbar-height);
+    z-index:var(--z-sticky);
+    transition:var(--transition);
+}
+
+.navbar.scrolled{
+    background:rgba(255,255,255,.90);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    box-shadow:var(--shadow-sm);
+}
+
+/* ==========================================
+   NAV CONTAINER
+========================================== */
+
+.nav-container{
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+/* ==========================================
+   LOGO
+========================================== */
+
+.nav-logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.nav-logo img{
+    width:56px;
+    height:56px;
+    object-fit:contain;
+}
+
+.nav-logo span{
+    font-family:var(--heading-font);
+    font-size:24px;
+    font-weight:var(--fw-bold);
+    color:var(--text-white);
+    transition:var(--transition);
+}
+
+.navbar.scrolled .nav-logo span{
+    color:var(--text-dark);
+}
+
+/* ==========================================
+   NAV MENU
+========================================== */
+
+.nav-menu{
+    display:flex;
+    align-items:center;
+    gap:40px;
+}
+
+/* ==========================================
+   NAV LINKS
+========================================== */
+
+.nav-link{
+    position:relative;
+    font-size:16px;
+    font-weight:var(--fw-medium);
+    color:var(--text-white);
+    transition:var(--transition);
+}
+
+.navbar.scrolled .nav-link{
+    color:var(--text-dark);
+}
+
+.nav-link:hover{
+    color:var(--secondary);
+}
+
+/* ==========================================
+   LINK UNDERLINE
+========================================== */
+
+.nav-link::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-8px;
+    width:0;
+    height:2px;
+    background:var(--secondary);
+    transition:var(--transition);
+}
+
+.nav-link:hover::after{
+    width:100%;
+}
+
+/* ==========================================
+   CTA BUTTON
+========================================== */
+
+.nav-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:14px 28px;
+    border:1px solid var(--secondary);
+    border-radius:var(--radius-full);
+    font-size:15px;
+    font-weight:var(--fw-semibold);
+    color:var(--text-white);
+    transition:var(--transition);
+}
+
+.navbar.scrolled .nav-btn{
+    color:var(--text-dark);
+}
+
+.nav-btn:hover{
+    background:var(--secondary);
+    color:var(--bg-white);
+}
+
+/* ==========================================
+   MOBILE MENU BUTTON
+========================================== */
+
+.menu-toggle{
+    display:none;
+    font-size:26px;
+    color:var(--text-white);
+    cursor:pointer;
+    transition:var(--transition);
+}
+
+.navbar.scrolled .menu-toggle{
+    color:var(--text-dark);
+}
+
+/* ==========================================
+   MOBILE NAVIGATION
+========================================== */
+
+@media(max-width:991px){
+
+    .menu-toggle{
+        display:block;
+    }
+
+    .nav-menu{
+        position:fixed;
+        top:var(--navbar-height);
+        right:-100%;
+        width:300px;
+        height:calc(100vh - var(--navbar-height));
+        background:var(--bg-white);
+        display:flex;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:32px;
+        padding:40px 30px;
+        transition:var(--transition);
+        box-shadow:var(--shadow-md);
+    }
+
+    .nav-menu.active{
+        right:0;
+    }
+
+    .nav-link{
+        color:var(--text-dark);
+        font-size:18px;
+    }
+
+    .nav-btn{
+        color:var(--text-dark);
+    }
+
+}
+
+/* ==========================================
+   SMALL DEVICES
+========================================== */
+
+@media(max-width:576px){
+
+    .nav-logo img{
+        width:48px;
+        height:48px;
+    }
+
+    .nav-logo span{
+        font-size:20px;
+    }
+
+    .nav-menu{
+        width:100%;
+    }
+
+}
