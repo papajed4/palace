@@ -1,9 +1,19 @@
 /* ==========================================
    APP JS
-   Royal Palace Website
 ========================================== */
 
 async function loadComponent(id, file) {
+
+    const container = document.getElementById(id);
+
+    /* If this page doesn't have the component,
+       just skip it. */
+
+    if (!container) {
+
+        return;
+
+    }
 
     try {
 
@@ -17,9 +27,11 @@ async function loadComponent(id, file) {
 
         const html = await response.text();
 
-        document.getElementById(id).innerHTML = html;
+        container.innerHTML = html;
 
-    } catch (error) {
+    }
+
+    catch(error){
 
         console.error(error);
 
@@ -27,22 +39,22 @@ async function loadComponent(id, file) {
 
 }
 
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", async ()=>{
 
-    await loadComponent("navbar", "navbar.html");
+    await loadComponent("navbar","navbar.html");
 
-    await loadComponent("hero", "hero.html");
+    await loadComponent("hero","hero.html");
 
-    await loadComponent("highlights", "bento-grid.html");
+    await loadComponent("highlights","bento-grid.html");
 
-    await loadComponent("videos", "videos.html");
+    await loadComponent("videos","videos.html");
 
-    await loadComponent("news", "news.html");
+    await loadComponent("news","news.html");
 
-    await loadComponent("gallery", "gallery.html");
+    await loadComponent("gallery","gallery.html");
 
-    await loadComponent("contact", "contact.html");
+    await loadComponent("contact","contact.html");
 
-    await loadComponent("footer", "footer.html");
+    await loadComponent("footer","footer.html");
 
 });
