@@ -240,21 +240,25 @@
 
     justify-content:center;
 
-    padding:14px 28px;
+    padding:14px 30px;
 
     border-radius:999px;
 
     border:1px solid rgba(255,255,255,.35);
 
-    color:#fff;
+    background:transparent;
 
-    text-decoration:none;
+    color:#fff;
 
     font-weight:600;
 
-    transition:.35s ease;
+    text-decoration:none;
+
+    transition:all .35s ease;
 
 }
+
+/* Hover */
 
 .contact-btn:hover{
 
@@ -268,19 +272,27 @@
 
 }
 
+/* Scrolled Navbar */
+
 .navbar.scrolled .contact-btn{
 
-    color:var(--primary);
+    background:var(--primary);
 
-    border-color:rgba(0,0,0,.12);
+    color:#fff;
+
+    border-color:var(--primary);
 
 }
 
+/* Scrolled Hover */
+
 .navbar.scrolled .contact-btn:hover{
 
-    color:#111;
+    background:var(--secondary);
 
     border-color:var(--secondary);
+
+    color:#111;
 
 }
 
