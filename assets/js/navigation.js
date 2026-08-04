@@ -1,117 +1,188 @@
 /* ==========================================
-   NAVIGATION JS
-   Royal Palace Website
+   NAVIGATION
 ========================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    const initNavigation = () => {
+    const navbar = document.querySelector(".navbar");
+    const menuToggle = document.querySelector(".menu-toggle");
+    const mobileNav = document.querySelector(".mobile-nav");
+    const mobilePanel = document.querySelector(".mobile-nav-content");
 
-        const navbar = document.querySelector(".navbar");
-        const menuToggle = document.querySelector(".menu-toggle");
-        const navMenu = document.querySelector(".nav-menu");
-        const navLinks = document.querySelectorAll(".nav-link");
+    const desktopLinks = document.querySelectorAll(".nav-link");
+    const mobileLinks = document.querySelectorAll(".mobile-link");
 
-        // Wait until navbar component has loaded
+    /* ==========================================
+       STICKY NAVBAR
+    ========================================== */
 
-        if (!navbar || !menuToggle || !navMenu) {
+    function handleNavbar() {
 
-            setTimeout(initNavigation, 100);
+        if (window.scrollY > 80) {
 
-            return;
+            navbar.classList.add("scrolled");
+
+        } else {
+
+            navbar.classList.remove("scrolled");
 
         }
 
-        /* ==========================================
-           Sticky Navbar
-        ========================================== */
+    }
 
-        const handleScroll = () => {
+    window.addEventListener("scroll", handleNavbar);
 
-            if (window.scrollY > 50) {
+    handleNavbar();
 
-                navbar.classList.add("scrolled");
+    /* ==========================================
+       MOBILE MENU
+    ========================================== */
 
-            } else {
+    function openMenu() {
 
-                navbar.classList.remove("scrolled");
+        menuToggle.classList.add("active");
 
-            }
+        mobileNav.classList.add("active");
 
-        };
+        document.body.style.overflow = "hidden";
 
-        window.addEventListener("scroll", handleScroll);
+    }
 
-        handleScroll();
+    function closeMenu() {
 
-        /* ==========================================
-           Mobile Menu
-        ========================================== */
+        menuToggle.classList.remove("active");
 
-        menuToggle.addEventListener("click", () => {
+        mobileNav.classList.remove("active");
 
-            navMenu.classList.toggle("active");
+        document.body.style.overflow = "";
 
-            const icon = menuToggle.querySelector("i");
+    }
 
-            if (navMenu.classList.contains("active")) {
+    menuToggle.addEventListener("click", () => {
 
-                icon.classList.remove("fa-bars");
-                icon.classList.add("fa-xmark");
+        if (mobileNav.classList.contains("active")) {
 
-            } else {
+            closeMenu();
 
-                icon.classList.remove("fa-xmark");
-                icon.classList.add("fa-bars");
+        } else {
 
-            }
+            openMenu();
 
-        });
+        }
 
-        /* ==========================================
-           Close Menu On Link Click
-        ========================================== */
+    });
 
-        navLinks.forEach(link => {
+    /* ==========================================
+       CLOSE WHEN CLICKING BACKDROP
+    ========================================== */
 
-            link.addEventListener("click", () => {
+    mobileNav.addEventListener("click", (e) => {
 
-                navMenu.classList.remove("active");
+        if (!mobilePanel.contains(e.target)) {
 
-                const icon = menuToggle.querySelector("i");
+            closeMenu();
 
-                icon.classList.remove("fa-xmark");
-                icon.classList.add("fa-bars");
+        }
+
+    });
+
+    /* ==========================================
+       SMOOTH SCROLL
+    ========================================== */
+
+    const allLinks = document.querySelectorAll(
+        '.nav-link, .mobile-link, .contact-btn, .mobile-contact-btn, .nav-brand'
+    );
+
+    allLinks.forEach(link => {
+
+        link.addEventListener("click", function(e) {
+
+            const target = this.getAttribute("href");
+
+            if (!target.startsWith("#")) return;
+
+            e.preventDefault();
+
+            const section = document.querySelector(target);
+
+            if (!section) return;
+
+            const offset = navbar.offsetHeight;
+
+            const position = section.offsetTop - offset;
+
+            window.scrollTo({
+
+                top: position,
+
+                behavior: "smooth"
 
             });
 
+            closeMenu();
+
         });
 
-        /* ==========================================
-           Close Menu When Clicking Outside
-        ========================================== */
+    });
 
-        document.addEventListener("click", (e) => {
+    /* ==========================================
+       ACTIVE LINKS
+    ========================================== */
+
+    const sections = document.querySelectorAll("section[id]");
+
+    function updateActiveLink() {
+
+        const scrollPosition = window.scrollY + navbar.offsetHeight + 100;
+
+        sections.forEach(section => {
+
+            const top = section.offsetTop;
+
+            const height = section.offsetHeight;
+
+            const id = section.getAttribute("id");
 
             if (
-                navMenu.classList.contains("active") &&
-                !navMenu.contains(e.target) &&
-                !menuToggle.contains(e.target)
+
+                scrollPosition >= top &&
+                scrollPosition < top + height
+
             ) {
 
-                navMenu.classList.remove("active");
+                desktopLinks.forEach(link => {
 
-                const icon = menuToggle.querySelector("i");
+                    link.classList.remove("active");
 
-                icon.classList.remove("fa-xmark");
-                icon.classList.add("fa-bars");
+                    if (link.getAttribute("href") === "#" + id) {
+
+                        link.classList.add("active");
+
+                    }
+
+                });
+
+                mobileLinks.forEach(link => {
+
+                    link.classList.remove("active");
+
+                    if (link.getAttribute("href") === "#" + id) {
+
+                        link.classList.add("active");
+
+                    }
+
+                });
 
             }
 
         });
 
-    };
+    }
 
-    initNavigation();
+    window.addEventListener("scroll", updateActiveLink);
+
+    updateActiveLink();
 
 });
