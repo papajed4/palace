@@ -2,22 +2,29 @@
    APP JS
 ========================================== */
 
+/**
+ * Detect the correct path to the components folder.
+ * Root pages use: components/
+ * Pages inside folders (e.g. news/) use: ../components/
+ */
+
+const COMPONENT_PATH = window.location.pathname.includes("/news/")
+    ? "../components/"
+    : "components/";
+
+/* ==========================================
+   LOAD COMPONENT
+========================================== */
+
 async function loadComponent(id, file) {
 
     const container = document.getElementById(id);
 
-    /* If this page doesn't have the component,
-       just skip it. */
-
-    if (!container) {
-
-        return;
-
-    }
+    if (!container) return;
 
     try {
 
-        const response = await fetch(`components/${file}`);
+        const response = await fetch(COMPONENT_PATH + file);
 
         if (!response.ok) {
 
@@ -25,36 +32,48 @@ async function loadComponent(id, file) {
 
         }
 
-        const html = await response.text();
-
-        container.innerHTML = html;
+        container.innerHTML = await response.text();
 
     }
 
-    catch(error){
+    catch (error) {
 
-        console.error(error);
+        console.error(`Component Error (${file})`, error);
 
     }
 
 }
 
-document.addEventListener("DOMContentLoaded", async ()=>{
+/* ==========================================
+   LOAD ALL COMPONENTS
+========================================== */
 
-    await loadComponent("navbar","navbar.html");
+document.addEventListener("DOMContentLoaded", async () => {
 
-    await loadComponent("hero","hero.html");
+    const components = [
 
-    await loadComponent("highlights","bento-grid.html");
+        ["navbar", "navbar.html"],
 
-    await loadComponent("videos","videos.html");
+        ["hero", "hero.html"],
 
-    await loadComponent("news","news.html");
+        ["highlights", "bento-grid.html"],
 
-    await loadComponent("gallery","gallery.html");
+        ["videos", "videos.html"],
 
-    await loadComponent("contact","contact.html");
+        ["news", "news.html"],
 
-    await loadComponent("footer","footer.html");
+        ["gallery", "gallery.html"],
+
+        ["contact", "contact.html"],
+
+        ["footer", "footer.html"]
+
+    ];
+
+    for (const [id, file] of components) {
+
+        await loadComponent(id, file);
+
+    }
 
 });
