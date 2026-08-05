@@ -10,15 +10,17 @@
 
     overflow: hidden;
 
+    margin-top: 82px;
+
 }
 
 .article-hero img{
 
-    display: block;
-
     width: 100%;
 
-    height: 520px;
+    height: 380px;
+
+    display: block;
 
     object-fit: cover;
 
@@ -28,64 +30,76 @@
 
 
 /* ==========================================
-   ARTICLE CONTENT
+   ARTICLE
 ========================================== */
-
-.container-small{
-
-    width: min(900px, 92%);
-
-    margin: 0 auto;
-
-}
 
 .article-content{
 
-    padding: 80px 0 120px;
+    padding: 60px 0 100px;
 
     background: #fff;
 
 }
 
+.container-small{
+
+    width: min(900px,92%);
+
+    margin: auto;
+
+}
+
+
+/* ==========================================
+   CATEGORY
+========================================== */
+
 .article-category{
 
-    display: inline-block;
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
 
     padding: 8px 18px;
+
+    border-radius: 999px;
 
     background: rgba(184,134,11,.12);
 
     color: var(--secondary);
 
-    border-radius: 999px;
+    font-size: 12px;
 
-    font-size: 13px;
-
-    font-weight: 600;
-
-    text-transform: uppercase;
+    font-weight: 700;
 
     letter-spacing: 2px;
 
-    margin-bottom: 25px;
+    text-transform: uppercase;
+
+    margin-bottom: 20px;
 
 }
+
+
+/* ==========================================
+   META
+========================================== */
 
 .article-meta{
 
     display: flex;
 
-    align-items: center;
-
-    gap: 30px;
+    gap: 25px;
 
     flex-wrap: wrap;
 
-    color: #777;
+    align-items: center;
 
-    font-size: 15px;
+    color: #888;
 
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 
 }
 
@@ -97,6 +111,8 @@
 
     gap: 8px;
 
+    font-size: 15px;
+
 }
 
 .article-meta i{
@@ -105,17 +121,27 @@
 
 }
 
+
+/* ==========================================
+   TITLE
+========================================== */
+
 .article-content h1{
 
-    color: var(--primary);
+    font-size: clamp(2.6rem,5vw,4rem);
 
-    font-size: clamp(2.8rem,5vw,4.3rem);
+    color: var(--primary);
 
     line-height: 1.15;
 
     margin-bottom: 35px;
 
 }
+
+
+/* ==========================================
+   PARAGRAPHS
+========================================== */
 
 .article-content p{
 
@@ -125,9 +151,14 @@
 
     line-height: 2;
 
-    margin-bottom: 28px;
+    margin-bottom: 24px;
 
 }
+
+
+/* ==========================================
+   BACK BUTTON
+========================================== */
 
 .back-news{
 
@@ -165,14 +196,20 @@
 
 
 /* ==========================================
-   RESPONSIVE
+   MOBILE
 ========================================== */
 
 @media (max-width:991px){
 
+    .article-hero{
+
+        margin-top: 75px;
+
+    }
+
     .article-hero img{
 
-        height: 420px;
+        height: 300px;
 
     }
 
@@ -180,15 +217,27 @@
 
 @media (max-width:768px){
 
+    .article-hero{
+
+        margin-top: 70px;
+
+    }
+
     .article-hero img{
 
-        height: 260px;
+        height: 220px;
 
     }
 
     .article-content{
 
-        padding: 60px 0 80px;
+        padding: 45px 0 70px;
+
+    }
+
+    .article-meta{
+
+        gap: 15px;
 
     }
 
@@ -202,11 +251,15 @@
 
         font-size: 16px;
 
+        line-height: 1.9;
+
     }
 
-    .article-meta{
+    .back-news{
 
-        gap: 15px;
+        width: 100%;
+
+        justify-content: center;
 
     }
 

@@ -2,19 +2,23 @@
    APP JS
 ========================================== */
 
-/**
- * Detect the correct path to the components folder.
- * Root pages use: components/
- * Pages inside folders (e.g. news/) use: ../components/
- */
+/*
+|--------------------------------------------------------------------------
+| Detect Current Directory
+|--------------------------------------------------------------------------
+*/
 
-const COMPONENT_PATH = window.location.pathname.includes("/news/")
+const isSubPage = window.location.pathname.includes("/news/");
+
+const componentPath = isSubPage
     ? "../components/"
     : "components/";
 
-/* ==========================================
-   LOAD COMPONENT
-========================================== */
+/*
+|--------------------------------------------------------------------------
+| Load Component
+|--------------------------------------------------------------------------
+*/
 
 async function loadComponent(id, file) {
 
@@ -24,7 +28,7 @@ async function loadComponent(id, file) {
 
     try {
 
-        const response = await fetch(COMPONENT_PATH + file);
+        const response = await fetch(componentPath + file);
 
         if (!response.ok) {
 
@@ -38,34 +42,79 @@ async function loadComponent(id, file) {
 
     catch (error) {
 
-        console.error(`Component Error (${file})`, error);
+        console.error(`Error loading ${file}:`, error);
 
     }
 
 }
 
-/* ==========================================
-   LOAD ALL COMPONENTS
-========================================== */
+/*
+|--------------------------------------------------------------------------
+| Fix Relative Paths
+|--------------------------------------------------------------------------
+*/
+
+function fixNavbarPaths() {
+
+    if (!isSubPage) return;
+
+    /*
+    |--------------------------------------------------------------------------
+    | Logo
+    |--------------------------------------------------------------------------
+    */
+
+    const logo = document.querySelector(".navbar-logo img");
+
+    if (logo) {
+
+        logo.src = "../assets/images/logo/logo.png";
+
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Navigation Links
+    |--------------------------------------------------------------------------
+    */
+
+    document.querySelectorAll("a").forEach(link => {
+
+        const href = link.getAttribute("href");
+
+        if (!href) return;
+
+        if (
+            href.startsWith("http") ||
+            href.startsWith("#") ||
+            href.startsWith("../") ||
+            href.startsWith("mailto:") ||
+            href.startsWith("tel:")
+        ) return;
+
+        link.setAttribute("href", "../" + href);
+
+    });
+
+}
+
+/*
+|--------------------------------------------------------------------------
+| Initialize
+|--------------------------------------------------------------------------
+*/
 
 document.addEventListener("DOMContentLoaded", async () => {
 
     const components = [
 
         ["navbar", "navbar.html"],
-
         ["hero", "hero.html"],
-
         ["highlights", "bento-grid.html"],
-
         ["videos", "videos.html"],
-
         ["news", "news.html"],
-
         ["gallery", "gallery.html"],
-
         ["contact", "contact.html"],
-
         ["footer", "footer.html"]
 
     ];
@@ -75,5 +124,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         await loadComponent(id, file);
 
     }
+
+    fixNavbarPaths();
 
 });
